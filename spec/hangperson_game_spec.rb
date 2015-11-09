@@ -9,7 +9,7 @@ describe HangpersonGame do
     end
   end
 
-  describe 'new', :pending => true do
+  describe 'new' do
     it "takes a parameter and returns a HangpersonGame object" do      
       @hangpersonGame = HangpersonGame.new('glorp')
       expect(@hangpersonGame).to be_an_instance_of(HangpersonGame)
@@ -19,8 +19,8 @@ describe HangpersonGame do
     end
   end
 
-  describe 'guessing', :pending => true do
-    context 'correctly' do
+  describe 'guessing' do
+    context 'correctly', :pending => true do
       before :each do
         @game = HangpersonGame.new('garply')
         @valid = @game.guess('a')
@@ -33,7 +33,7 @@ describe HangpersonGame do
         expect(@valid).not_to be false
       end
     end
-    context 'incorrectly' do
+    context 'incorrectly', :pending => true do
       before :each do
         @game = HangpersonGame.new('garply')
         @valid = @game.guess('z')
@@ -46,7 +46,7 @@ describe HangpersonGame do
         expect(@valid).not_to be false
       end
     end
-    context 'same letter repeatedly' do
+    context 'same letter repeatedly', :pending => true do
       before :each do
         @game = HangpersonGame.new('garply')
         guess_several_letters(@game, 'aq')
