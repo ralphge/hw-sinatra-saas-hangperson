@@ -41,7 +41,7 @@ class HangpersonApp < Sinatra::Base
     letter = params[:guess].to_s[0]
     repeated = @game.guess(letter)
     if !repeated
-      flash[:message] = "You have already used that letter"
+      flash[:message] = "You have already used that letter."
     end
     redirect '/show'
   end
@@ -63,13 +63,25 @@ class HangpersonApp < Sinatra::Base
   end
   
   get '/win' do
-    ### YOUR CODE HERE ###
-    erb :win # You may change/remove this line
+    state = @game.check_win_or_lose
+    if state == :win
+      erb :win
+    elsif state == :lose
+      erb :lose
+    else
+      erb :show # You may change/remove this line    
+    end
   end
   
   get '/lose' do
-    ### YOUR CODE HERE ###
-    erb :lose # You may change/remove this line
+    state = @game.check_win_or_lose
+    if state == :win
+      erb :win
+    elsif state == :lose
+      erb :lose
+    else
+      erb :show # You may change/remove this line    
+    end
   end
   
 end
