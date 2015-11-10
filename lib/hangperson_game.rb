@@ -24,35 +24,53 @@ class HangpersonGame
   attr_accessor :word, :guesses, :wrong_guesses
   
   def guess(guess)
-    #if @word.index(guess) != nil
-    #  found = false
-    #  @guesses.each_char do |char|
-    #    if char == guess
-    #      found = true
-    #    end
-    #  end
-    #  if !found
-    #    @guesses << guess
-    #  end
-    #else
-    #  found = false
-    #  @wrong_guesses.each_char do |char|
-    #    if char == guess
-    #      found = true
-    #    end
-    #  end
-    #  if !found
-    #    @wrong_guesses << guess
-    #  end
-    #  
-    #end
-    
+    raise ArgumentError unless guess
+    raise ArgumentError unless guess.match(/^[a-zA-z]+$/)
+    letter = guess.downcase
+    if @word.index(letter) != nil
+      if @guesses.index(letter) == nil
+        @guesses  = @guesses + letter
+        letter
+      else
+        false
+      end
+    else
+      if @wrong_guesses.index(letter) == nil
+        @wrong_guesses = @wrong_guesses + letter
+        letter
+      else
+        false
+      end
+    end
   end
   
-  #def check_win_or_lose
-  #end
+  def check_win_or_lose
+    all_found = true
+    @word.each_char do |char|
+      if guesses.index(char) == nil
+        all_found = false
+      end
+    end
+
+    if all_found
+      :win
+    elsif @wrong_guesses.length >= 7
+      :lose
+    else
+      :play
+    end
+  end
   
-  #def word_with_guesses
-  #end
+  def word_with_guesses
+    out = ''
+    @word.each_char do |char|
+      if guesses.index(char)
+        out = out + char
+      else
+        out = out + '-'
+      end
+    end
+    out
+  end
   
 end
