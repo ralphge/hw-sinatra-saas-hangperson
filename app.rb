@@ -56,7 +56,7 @@ class HangpersonApp < Sinatra::Base
     if state == :win
       redirect '/win'
     elsif state == :lose
-      redirect 'lose'
+      redirect '/lose'
     else
       redirect '/show'  
     end
@@ -67,7 +67,7 @@ class HangpersonApp < Sinatra::Base
     if state == :win
       redirect '/win'
     elsif state == :lose
-      redirect 'lose'
+      redirect '/lose'
     else
       redirect '/show'   
     end
@@ -78,7 +78,7 @@ class HangpersonApp < Sinatra::Base
     if state == :win
       redirect '/win'
     elsif state == :lose
-      redirect 'lose'
+      redirect '/lose'
     else
       redirect '/show'    
     end
